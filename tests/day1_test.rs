@@ -1,5 +1,5 @@
 #[cfg(test)]
-mod day1_part1_test {
+mod day1_test {
     use adventofcode_2020::day1::run;
 
     const SAMPLE_INPUT: [usize; 6] = [1721, 979, 366, 299, 675, 1456];
@@ -21,12 +21,22 @@ mod day1_part1_test {
     ];
 
     #[test]
-    fn works_for_sample_input() {
+    fn part1_works_for_sample_input() {
         assert_eq!(run(&SAMPLE_INPUT, 2).unwrap(), 514579);
     }
 
     #[test]
-    fn works_for_puzzle_input() {
+    fn part1_works_for_puzzle_input() {
         assert_eq!(run(&PUZZLE_INPUT, 2).unwrap(), 713184);
+    }
+
+    #[test]
+    fn part2_works_for_sample_input() {
+        assert_eq!(run(&SAMPLE_INPUT, 3).unwrap(), 241861950);
+    }
+
+    #[test]
+    fn part2_works_for_puzzle_input() {
+        assert_eq!(run(&PUZZLE_INPUT, 3).unwrap(), 261244452);
     }
 }
