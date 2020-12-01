@@ -1,13 +1,20 @@
-const SUM: u32 = 2020;
+use itertools::Itertools;
 
-pub fn run(entries: Vec<u32>) -> Option<u32> {
-    for (index, entry) in entries.iter().enumerate() {
-        let rest = &entries[(index + 1)..];
+const SUM: usize = 2020;
 
-        match rest.iter().find(|&x| x + entry == SUM) {
-            Some(&other) => return Some(entry * other),
-            None => continue,
-        }
+pub fn run(entries: &[usize], sum_count: usize) -> Option<usize> {
+    let mut combinations = entries.iter().combinations(sum_count);
+
+    match combinations.find(|c| sum(&c) == SUM) {
+        Some(combination) => Some(product(&combination)),
+        None => None,
     }
-    None
+}
+
+fn sum(items: &Vec<&usize>) -> usize {
+    items.iter().fold(0, |acc, &x| acc + x)
+}
+
+fn product(items: &Vec<&usize>) -> usize {
+    items.iter().fold(1, |acc, &x| acc * x)
 }
