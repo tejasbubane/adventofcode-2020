@@ -11,10 +11,10 @@ pub fn run(entries: &[usize], sum_count: usize) -> Option<usize> {
     }
 }
 
-fn sum(items: &Vec<&usize>) -> usize {
-    items.iter().fold(0, |acc, &x| acc + x)
+fn sum(items: &[&usize]) -> usize {
+    items.iter().map(|&&x| x).sum()
 }
 
-fn product(items: &Vec<&usize>) -> usize {
-    items.iter().fold(1, |acc, &x| acc * x)
+fn product(items: &[&usize]) -> usize {
+    items.iter().map(|&&x| x).product()
 }
