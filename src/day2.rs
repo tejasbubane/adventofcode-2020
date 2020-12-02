@@ -18,12 +18,18 @@ pub fn run(filename: &str) -> usize {
 }
 
 fn matches(password_req: &str) -> bool {
+    let (min, max, letter, password) = parse(password_req);
+    let letter_count = password.chars().filter(|&p| p == letter).count();
+
+    min <= letter_count && letter_count <= max
+}
+
+fn parse(password_req: &str) -> (usize, usize, char, &str) {
     let caps = REGEXP.captures(password_req).unwrap();
     let min: usize = caps.name("min").unwrap().as_str().parse().unwrap();
     let max: usize = caps.name("max").unwrap().as_str().parse().unwrap();
     let letter: char = caps.name("letter").unwrap().as_str().parse().unwrap();
     let password = caps.name("password").unwrap().as_str();
-    let letter_count = password.chars().filter(|&p| p == letter).count();
 
-    min <= letter_count && letter_count <= max
+    (min, max, letter, password)
 }
