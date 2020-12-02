@@ -9,17 +9,10 @@ lazy_static! {
 
 pub fn run(filename: &str) -> usize {
     match read_lines(filename) {
-        Ok(lines) => {
-            let mut count = 0;
-            for line in lines {
-                if let Ok(content) = line {
-                    if matches(&content) {
-                        count += 1
-                    }
-                }
-            }
-            count
-        }
+        Ok(lines) => lines
+            .map(|line| line.unwrap())
+            .filter(|line| matches(&line))
+            .count(),
         Err(_) => 0,
     }
 }
