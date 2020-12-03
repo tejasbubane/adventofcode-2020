@@ -5,8 +5,10 @@ use std::path::Path;
 // The output is wrapped in a Result to allow matching on errors
 // Returns an Iterator to the Reader of the lines of the file.
 // Usage:
-// if let Ok(lines) = read_lines("./hosts") {
-//     for line in lines {
+// match read_line(filename) {
+//     Ok(lines) => lines.map(|line| line.unwrap())......
+//     Err(_) => ......
+// }
 pub fn read_lines<P>(filename: P) -> io::Result<io::Lines<io::BufReader<File>>>
 where
     P: AsRef<Path>,
