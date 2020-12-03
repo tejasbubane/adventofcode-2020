@@ -1,8 +1,8 @@
 #[cfg(test)]
 mod day3_test {
-    use adventofcode_2020::day3::{slope_for, run};
+    use adventofcode_2020::day3::{run, slope_for};
 
-    const STEPS: [(usize, usize); 5] = [(1,1), (3,1), (5,1), (7,1), (1,2)];
+    const STEPS: [(usize, usize); 5] = [(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)];
 
     #[test]
     fn part1_works_for_sample_input() {

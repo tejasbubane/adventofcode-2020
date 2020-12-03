@@ -28,7 +28,10 @@ pub fn slope_for(filename: &str, right_step: usize, down_step: usize) -> usize {
 
 // Part 2
 pub fn run(filename: &str, paths: &[(usize, usize)]) -> usize {
-    paths.iter().map(|(right_step, down_step)| slope_for(filename, *right_step, *down_step)).product()
+    paths
+        .iter()
+        .map(|(right_step, down_step)| slope_for(filename, *right_step, *down_step))
+        .product()
 }
 
 fn construct_grid_line(line: &str) -> Vec<bool> {
@@ -37,7 +40,7 @@ fn construct_grid_line(line: &str) -> Vec<bool> {
     line.chars().for_each(|c| match c {
         '.' => result.push(false), // no tree
         '#' => result.push(true),
-        x => panic!("Found unknown character: {}", x)
+        x => panic!("Found unknown character: {}", x),
     });
     result
 }
