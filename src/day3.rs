@@ -16,12 +16,12 @@ pub fn slope_for(filename: &str, right_step: usize, down_step: usize) -> usize {
     let row_limit = terrain.rows();
     let col_limit = terrain.cols();
     while row < row_limit {
-        col = col % col_limit;
+        col %= col_limit;
         if *terrain.get(row, col).unwrap() {
-            tree_count = tree_count + 1
+            tree_count += 1
         }
-        row = row + down_step;
-        col = col + right_step;
+        row += down_step;
+        col += right_step;
     }
     tree_count
 }
