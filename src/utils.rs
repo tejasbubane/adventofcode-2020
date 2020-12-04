@@ -1,5 +1,5 @@
-use std::fs::File;
-use std::io::{self, BufRead};
+use std::fs;
+use std::io::{self, BufRead, Error};
 use std::path::Path;
 
 // The output is wrapped in a Result to allow matching on errors
@@ -9,10 +9,14 @@ use std::path::Path;
 //     Ok(lines) => lines.map(|line| line.unwrap())......
 //     Err(_) => ......
 // }
-pub fn read_lines<P>(filename: P) -> io::Result<io::Lines<io::BufReader<File>>>
+pub fn read_lines<P>(filename: P) -> io::Result<io::Lines<io::BufReader<fs::File>>>
 where
     P: AsRef<Path>,
 {
-    let file = File::open(filename)?;
+    let file = fs::File::open(filename)?;
     Ok(io::BufReader::new(file).lines())
+}
+
+pub fn read_to_string(filename: &str) -> Result<String, Error> {
+    fs::read_to_string(filename)
 }
