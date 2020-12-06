@@ -8,9 +8,10 @@ I am playing with [Rust](https://www.rust-lang.org/) :crab: these days so that i
 
 ### Usage
 
-This is a library crate (no executable). Sample and puzzle inputs are hard-coded in tests.
+This is a library crate (no executable). [Sample and puzzle input files](tests/inputs) are passed to tests directly.
 
 Build project and run tests:
+
 ```
 cargo test
 ```
