@@ -5,7 +5,7 @@ use std::path::Path;
 // The output is wrapped in a Result to allow matching on errors
 // Returns an Iterator to the Reader of the lines of the file.
 // Usage:
-// match read_line(filename) {
+// match read_lines(filename) {
 //     Ok(lines) => lines.map(|line| line.unwrap())......
 //     Err(_) => ......
 // }
