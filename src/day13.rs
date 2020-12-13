@@ -16,8 +16,7 @@ pub fn run_1(filename: &str) -> usize {
             .unwrap();
         let waiting_time = earliest_departure - arrival_time;
         bus_no * waiting_time
-    }
-    else {
+    } else {
         panic!("Error reading file {}", filename)
     }
 }
@@ -30,4 +29,26 @@ fn departures(arrival_time: usize, bus_numbers: &[usize]) -> Vec<usize> {
             arrival_time - remainder + b
         })
         .collect()
+}
+
+pub fn run_2(input: &str) -> usize {
+    let buses: Vec<(usize, usize)> = input
+        .split(',')
+        .enumerate()
+        .map(|(i, b)| (i, b.parse::<usize>().unwrap_or(0)))
+        .filter(|&(_, b)| b != 0)
+        .collect();
+
+    let mut step = 1; // for first LCM
+    let mut time = 0;
+    for bus in buses {
+        loop {
+            time += step;
+            if (time + bus.0) % bus.1 == 0 {
+                step *= bus.1; // assuming all prime numbers as per inputs, LCM is multiplication
+                break;
+            }
+        }
+    }
+    time
 }
