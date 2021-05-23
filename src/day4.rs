@@ -7,7 +7,7 @@ use std::collections::{HashMap, HashSet};
 
 pub fn run_1(filename: &str) -> usize {
     let filestr = read_to_string(filename).expect("Error reading file.");
-    passports_with_required_fields(&filestr).iter().count()
+    passports_with_required_fields(&filestr).len()
 }
 
 pub fn run_2(filename: &str) -> usize {
@@ -32,21 +32,21 @@ fn is_valid(passport: &HashMap<String, String>) -> bool {
 
 fn valid_byr(birth_year: &String) -> bool {
     match birth_year.parse::<usize>() {
-        Ok(year) => year >= 1920 && year <= 2002,
+        Ok(year) => (1920..=2002).contains(&year),
         Err(_) => false,
     }
 }
 
 fn valid_iyr(issue_year: &String) -> bool {
     match issue_year.parse::<usize>() {
-        Ok(year) => year >= 2010 && year <= 2020,
+        Ok(year) => (2010..=2020).contains(&year),
         Err(_) => false,
     }
 }
 
 fn valid_eyr(issue_year: &String) -> bool {
     match issue_year.parse::<usize>() {
-        Ok(year) => year >= 2020 && year <= 2030,
+        Ok(year) => (2020..=2030).contains(&year),
         Err(_) => false,
     }
 }
@@ -57,8 +57,8 @@ fn valid_hgt(height_str: &String) -> bool {
     let unit = &height_str[(len - 2)..];
 
     match (height.parse::<usize>(), unit) {
-        (Ok(l), "cm") => l >= 150 && l <= 193,
-        (Ok(l), "in") => l >= 59 && l <= 76,
+        (Ok(l), "cm") => (150..=193).contains(&l),
+        (Ok(l), "in") => (59..=76).contains(&l),
         _ => false,
     }
 }

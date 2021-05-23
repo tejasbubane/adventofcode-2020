@@ -11,10 +11,9 @@ pub fn run(filename: &str, sum_count: usize) -> Option<usize> {
                 .collect();
             let mut combinations = entries.iter().combinations(sum_count);
 
-            match combinations.find(|c| sum(c) == SUM) {
-                Some(combination) => Some(product(&combination)),
-                None => None,
-            }
+            combinations
+                .find(|c| sum(c) == SUM)
+                .map(|combination| product(&combination))
         }
         Err(_) => None,
     }
